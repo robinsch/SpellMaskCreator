@@ -14,10 +14,11 @@ void CreateMask(std::function<bool(SpellEntry const*)> const& check)
         if (check(spellInfo))
         {
             resultMask |= spellInfo->SpellFamilyFlags;
+            printf("Name: %u Entry: %s SpellFamilyFlags: %u\n", spellInfo->Id, spellInfo->SpellName[0], spellInfo->SpellFamilyFlags);
         }
     }
 
-    printf("%u", resultMask);
+    printf("\nSpellFamilyMask: %u", resultMask);
 }
 
 int main()
@@ -27,11 +28,14 @@ int main()
 
     CreateMask([](SpellEntry const* spellInfo)
     {
-        for (uint8_t i = 0; i < 3; i++)
-            return spellInfo->SpellFamilyName == SPELLFAMILY_SHAMAN && spellInfo->Effect[i] == SPELL_EFFECT_APPLY_AURA;
+        // Example how to use
+        /*for (uint8_t i = 0; i < 3; i++)
+            return spellInfo->Dispel == DISPEL_MAGIC && spellInfo->SpellFamilyName == SPELLFAMILY_SHAMAN && spellInfo->Effect[i] == SPELL_EFFECT_APPLY_AURA;*/
 
         return false;
     });
+
+    getchar();
 
     return 0;
 }

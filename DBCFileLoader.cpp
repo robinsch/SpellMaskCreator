@@ -43,11 +43,7 @@ bool DBCFileLoader::Load(const char *filename, const char *fmt)
     FILE * f;
     fopen_s(&f, filename, "rb");
     if (!f)
-    {
-        printf("yolo");
         return false;
-    }
-        
 
     if (fread(&header, 4, 1, f) != 1)                             // Number of records
         return false;
